@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zorrito Matemático 16-Bits</title>
+    <!-- Fuente Pixel Retro -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="retro-bg">
+
+    <!-- PANTALLA DE INICIO (START MENU) -->
+    <div id="pantalla-inicio" class="contenedor-pantalla">
+        <h1 class="titulo-retro">🦊 ZORRITO MATEMÁTICO 🦊</h1>
+        <h2 class="subtitulo-retro">DESAFÍO 16-BITS</h2>
+
+        <div class="avatar-box">
+            <div class="pixel-fox fox-idle"></div>
+        </div>
+
+        <p class="dialogo-fox">"¡Hola! ¿Estás lista para el desafío de hoy?"</p>
+
+        <button id="btn-comenzar" class="btn-pixel">PRESS START 🕹️</button>
+    </div>
+
+    <!-- PANTALLA DE JUEGO -->
+    <div id="pantalla-juego" class="contenedor-pantalla oculto">
+        
+        <!-- Barra superior: Vidas y Tipo de Operación -->
+        <div class="hud-bar">
+            <div class="vidas-box">
+                VIDAS: <span id="corazones">❤️❤️❤️</span>
+            </div>
+            <div class="modo-box">
+                OP: <span id="indicador-op" class="op-badge">{{ 'SUMA (+)' if tipo_op == 'suma' else 'RESTA (-)' }}</span>
+            </div>
+        </div>
+
+        <div class="layout-juego">
+            <!-- Zona del Zorrito Acompañante -->
+            <div class="side-fox">
+                <div id="fox-gameplay" class="pixel-fox fox-thinking"></div>
+                <div id="fox-bubble" class="bocadillo">¡Vos podés!</div>
+            </div>
+
+            <!-- Árbol de Matemática -->
+            <div class="contenedor-arbol">
+                <div class="nivel">
+                    <span class="num-retro" id="num1">{{ num1 }}</span>
+                    <span class="signo-retro" id="signo-principal">{{ '+' if tipo_op == 'suma' else '-' }}</span>
+                    <span class="num-retro" id="num2">{{ num2 }}</span>
+                </div>
+
+                <div class="flechas-ramas">↙ | ↘ &nbsp;&nbsp;&nbsp;&nbsp; ↙ | ↘</div>
+
+                <!-- Descomposición -->
+                <div class="nivel">
+                    <input type="number" class="casilla cien" id="c1">
+                    <input type="number" class="casilla diez" id="c2">
+                    <input type="number" class="casilla uno" id="c3">
+                    <span class="signo-retro">{{ '+' if tipo_op == 'suma' else '-' }}</span>
+                    <input type="number" class="casilla cien" id="c4">
+                    <input type="number" class="casilla diez" id="c5">
+                    <input type="number" class="casilla uno" id="c6">
+                </div>
+
+                <div class="flechas-agrupacion">↓</div>
+
+                <!-- Familias juntas -->
+                <div class="nivel">
+                    <input type="number" class="casilla cien" id="c7">
+                    <span class="signo-retro">+</span>
+                    <input type="number" class="casilla diez" id="c8">
+                    <span class="signo-retro">+</span>
+                    <input type="number" class="casilla uno" id="c9">
+                </div>
+
+                <div class="flechas-agrupacion">↓</div>
+
+                <!-- Resultado Número -->
+                <div class="nivel">
+                    <input type="number" class="casilla resultado-final" id="c10" placeholder="???">
+                </div>
+
+                <!-- Escritura en Letras -->
+                <div class="seccion-letras">
+                    <label for="c_letras">✏️ EN LETRAS:</label><br>
+                    <input type="text" id="c_letras" class="input-letras-retro" placeholder="Escribí aquí..." autocomplete="off">
+                    <input type="hidden" id="respuesta_correcta_letras" value="{{ resultado_letras }}">
+                    <input type="hidden" id="tipo_operacion" value="{{ tipo_op }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA FIN DE JUEGO (VICTORIA / GAME OVER) -->
+    <div id="pantalla-fin" class="contenedor-pantalla oculto">
+        <h1 id="titulo-fin" class="titulo-retro"></h1>
+        
+        <div class="avatar-box">
+            <div id="fox-final" class="pixel-fox"></div>
+        </div>
+
+        <p id="mensaje-fin" class="dialogo-fox"></p>
+
+        <button onclick="window.location.reload();" class="btn-pixel">JUGAR DE NUEVO 🔄</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
