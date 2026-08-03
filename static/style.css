@@ -15,6 +15,7 @@ body {
     padding: 10px;
 }
 
+/* El contenedor del juego se mantiene */
 .game-container {
     width: 100%;
     max-width: 450px;
@@ -22,12 +23,15 @@ body {
     border: 3px solid #ffd700;
     box-shadow: 0 0 15px #ffd700;
     border-radius: 12px;
-    padding: 15px 10px;
+    padding: 15px;
     text-align: center;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header-info {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,7 +40,6 @@ body {
     padding: 8px;
     border-radius: 6px;
     margin-bottom: 15px;
-    font-weight: bold;
     font-size: 0.9rem;
 }
 
@@ -46,42 +49,45 @@ body {
     margin-bottom: 10px;
 }
 
-/* Contenedor del árbol matemático responsivo */
+/* --- ESTA ES LA MAGIA PARA EL ÁRBOL --- */
+/* Mantenemos el árbol como una estructura fija, pero que se puede escalar */
 .tree-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin: 15px 0;
     width: 100%;
-    overflow-x: auto;
+    transform-origin: top center; /* Escalamos desde arriba y el centro */
 }
 
+/* Las filas se mantienen en línea, no se separan */
 .tree-row {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 6px;
     width: 100%;
-    flex-wrap: nowrap;
+    white-space: nowrap; /* Evita que los elementos se muevan de fila */
 }
 
 .tree-box {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border: 2px solid #3b82f6;
     border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     background: rgba(0, 0, 0, 0.4);
+    flex-shrink: 0; /* No dejes que la caja se encoja */
 }
 
 .tree-box.result {
-    width: 70px;
-    height: 45px;
+    width: 80px;
+    height: 50px;
     border-color: #10b981;
     color: #10b981;
 }
@@ -89,49 +95,51 @@ body {
 .operator {
     color: #ff007f;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .arrow {
     color: #a855f7;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
-/* Zorrito flotante responsive */
+/* --- ZORRITO FLOTANTE MEJORADO --- */
 .fox-mascot {
     position: absolute;
-    left: -20px;
-    bottom: 20px;
+    left: -15px;
+    bottom: 15px;
     display: flex;
     align-items: center;
     z-index: 10;
 }
 
 .fox-img {
-    width: 45px;
+    width: 50px;
     height: auto;
 }
 
 .fox-bubble {
     background: #ffffff;
     color: #000000;
-    font-size: 0.75rem;
-    padding: 4px 6px;
+    font-size: 0.8rem;
+    padding: 4px 8px;
     border-radius: 8px;
-    margin-left: 4px;
+    margin-left: 6px;
     font-weight: bold;
     white-space: nowrap;
 }
 
-/* Input y botones */
+/* --- INPUTS --- */
 .input-section {
     margin-top: 15px;
+    width: 100%;
 }
 
 input[type="text"] {
-    width: 80%;
-    max-width: 250px;
-    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
     border: 2px solid #00ffff;
     border-radius: 6px;
     background: #000000;
@@ -139,4 +147,26 @@ input[type="text"] {
     text-align: center;
     font-size: 1rem;
     outline: none;
+}
+
+/* --- MEDIA QUERY: MAGIA PARA CELULARES --- */
+@media (max-width: 480px) {
+    .game-container {
+        padding: 10px;
+    }
+    
+    .tree-container {
+        /* ¡MAGIA! Escalamos TODO el árbol a un 85% de su tamaño */
+        transform: scale(0.85);
+        margin: 10px 0; /* Ajustamos márgenes */
+    }
+
+    .header-info {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .operation-title {
+        font-size: 1.2rem;
+    }
 }
