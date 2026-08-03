@@ -261,3 +261,11 @@ input[type=number] { -moz-appearance: textfield; }
     20%, 60% { transform: translateX(-5px); }
     40%, 80% { transform: translateX(5px); }
 }
+
+/* Ajuste exclusivo para celulares */
+@media (max-width: 480px) {
+    .game-container {
+        transform: scale(0.85); /* Reduce todo un 15% solo en el celu */
+        transform-origin: top center;
+    }
+}
