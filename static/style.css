@@ -1,162 +1,165 @@
+/* RESET BÁSICO */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
-    background-color: #0d0914;
+body.retro-bg {
+    background-color: #0b0716;
     color: #ffffff;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Press Start 2P', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 10px;
+    padding: 20px 10px;
     overflow-x: hidden;
 }
 
-/* MARCO PRINCIPAL DORADO (La pantalla del juego) */
-.contenedor-pantalla, .layout-juego {
-    width: 95%;
-    max-width: 520px; /* Ancho máximo en PC */
-    background: #140d2b;
-    border: 3px solid #ffd700;
-    box-shadow: 0 0 15px #ffd700, inset 0 0 10px rgba(255, 215, 0, 0.2);
-    border-radius: 12px;
-    padding: 20px 15px;
+/* MARCOS DORADOS PRINCIPALES */
+.contenedor-pantalla {
+    background: #120a2a;
+    border: 4px solid #ffd700;
+    box-shadow: 0 0 20px #ffd700, inset 0 0 15px rgba(255, 215, 0, 0.3);
+    border-radius: 16px;
+    padding: 25px 20px;
     text-align: center;
     position: relative;
+    width: 100%;
+    max-width: 480px;
     margin: 0 auto;
 }
 
-/* ENCABEZADO (Vidas y Op) */
-.header-info, [class*="vidas"] {
+.contenedor-pantalla.oculto {
+    display: none !important;
+}
+
+/* TÍTULOS Y TEXTOS RETRO */
+.titulo-retro {
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-shadow: 2px 2px #ff007f;
+    margin-bottom: 10px;
+}
+
+.subtitulo-retro {
+    color: #ffd700;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+/* HUD (BARRA SUPERIOR EN JUEGO) */
+.hud-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: rgba(0, 0, 0, 0.6);
     border: 2px solid #00ffff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.65rem;
 }
 
-/* OPERACIÓN PRINCIPAL */
-.operACION-principal, [class*="389"] {
-    color: #ffd700;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-/* ÁRBOL MATEMÁTICO */
+/* ESTRUCTURA DEL ÁRBOL EN FILAS */
 .contenedor-arbol {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+div[class*="fila"], .tree-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
-    margin: 15px 0;
     width: 100%;
 }
 
-.tree-row, [class*="fila"] {
+/* CAJAS DEL ÁRBOL MATEMÁTICO */
+div[class*="caja"], .tree-box {
+    width: 52px;
+    height: 44px;
+    border: 3px solid #3b82f6;
+    background: #000000;
+    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6px;
-    width: 100%;
-}
-
-/* CAJITAS DEL ÁRBOL */
-.tree-box, div[class*="caja"] {
-    width: 44px;
-    height: 40px;
-    border: 2px solid #3b82f6;
+    font-size: 0.85rem;
     border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.5);
-    flex-shrink: 0;
+    box-shadow: inset 0 0 8px rgba(59, 130, 246, 0.5);
 }
 
-.tree-box.result, div[class*="resultado"] {
-    width: 70px;
-    height: 42px;
+div[class*="resultado"], .tree-box.result {
+    width: 80px;
+    height: 48px;
     border-color: #10b981;
     color: #10b981;
+    box-shadow: inset 0 0 8px rgba(16, 185, 129, 0.5);
 }
 
-.operator, .arrow {
-    color: #ff007f;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-/* SECCIÓN INFERIOR: INPUT */
+/* SECCIÓN INPUT LE TRAS */
 .seccion-letras {
-    margin-top: 15px;
-    width: 100%;
+    margin-top: 20px;
 }
 
 .seccion-letras label {
     color: #ffd700;
-    font-size: 0.85rem;
-    font-weight: bold;
+    font-size: 0.65rem;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
-.input-letras-retro, input[type="text"] {
-    width: 85%;
-    max-width: 260px;
-    padding: 10px;
+.input-letras-retro {
+    width: 90%;
+    max-width: 280px;
+    padding: 12px;
     border: 2px solid #00ffff;
-    border-radius: 6px;
     background: #000000;
     color: #ffffff;
+    font-family: inherit;
+    font-size: 0.8rem;
     text-align: center;
-    font-size: 1rem;
+    border-radius: 6px;
     outline: none;
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
 }
 
-/* ZORRITO FLOTANTE (Centrado adentro para que no se salga del marco) */
-.avatar-box, [class*="fox"] {
-    position: relative;
-    margin: 10px auto 5px auto;
-    display: inline-block;
+/* BOTÓN PRESS START */
+.btn-pixel {
+    background: #ff007f;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px #99004d;
+    margin-top: 15px;
 }
 
-/* 📱 MAGIA RESPONSIVA PARA CELULARES */
-@media (max-width: 480px) {
-    body {
+.btn-pixel:active {
+    box-shadow: 0 0 #99004d;
+    transform: translateY(4px);
+}
+
+/* 📱 MAGIA RESPONSIVA ÚNICA PARA CELULAR:
+   Escala toda la tarjeta limpia y prolija sin romper la alineación */
+@media (max-width: 500px) {
+    body.retro-bg {
         padding: 5px;
     }
 
-    .contenedor-pantalla, .layout-juego {
-        padding: 12px 8px;
-        width: 98%;
-    }
-
-    .tree-box, div[class*="caja"] {
-        width: 38px;  /* Se reducen apenas las cajas para que entren holgadas */
-        height: 36px;
-        font-size: 0.88rem;
-    }
-
-    .tree-box.result, div[class*="resultado"] {
-        width: 60px;
-        height: 38px;
-    }
-
-    .input-letras-retro, input[type="text"] {
-        padding: 8px;
-        font-size: 0.95rem;
+    .contenedor-pantalla {
+        transform: scale(0.88);
+        transform-origin: top center;
+        margin-top: -10px;
     }
 }
